@@ -18,12 +18,8 @@ const { page } = Astro.props
 >
   <section class="my-12">
     <div class="space-content container">
-      <h1>Blog</h1>
-      <p class="text-2xl">
-        An example of a blog with dynamic content fetched from <a href="https://jsonplaceholder.typicode.com/posts"
-          >JSONPlaceholder</a
-        > using the title, body and userId. The Accessible Astro Card Component is used here to display al the posts.
-      </p>
+      <h1>리뷰</h1>
+      <p class="text-2xl">웹 사이트, 모바일 앱, 키오스크, 게임 등 일상에서 만나는 디지털 콘텐츠와 하드웨어의 접근성에 대한 이야기를 합니다.</p>
     </div>
   </section>
   <section class="my-12">
@@ -34,7 +30,7 @@ const { page } = Astro.props
           page.data.map((post) => (
             <li>
               <Card
-                url={'/blog/' + post.title.replaceAll(' ', '-').toLowerCase()}
+                url={'/reviews/' + post.title.replaceAll(' ', '-').toLowerCase()}
                 title={post.title}
                 footer={'userId:' + post.userId}
               >
@@ -46,10 +42,10 @@ const { page } = Astro.props
       </ul>
       <div class="mt-12 grid place-content-center">
         <Pagination
-          firstPage={page.url.prev ? '/blog' : null}
+          firstPage={page.url.prev ? '/reviews' : null}
           previousPage={page.url.prev ? page.url.prev : null}
           nextPage={page.url.next ? page.url.next : null}
-          lastPage={page.url.next ? `/blog/${Math.round(page.total / page.size)}` : null}
+          lastPage={page.url.next ? `/reviews/${Math.round(page.total / page.size)}` : null}
           currentPage={page.currentPage}
           totalPages={Math.round(page.total / page.size)}
         />
