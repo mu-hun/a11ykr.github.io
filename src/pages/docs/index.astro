@@ -1,0 +1,210 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import { Badge } from 'accessible-astro-components'
+---
+
+<DefaultLayout title="접근성 문서 모음">
+    <h1>접근성 문서 모음</h1>
+    <h2 id="w3c-korean-translation">W3C 접근성 문서 한국어 번역본 모음</h2>
+    <p>다음은 접근성 관련 번역본 목록이며, 여기서 작업 중인 문서에는 상태 설명이 붙습니다.</p>
+    <ul>
+        <li>
+            <a href="https://a11ykr.github.io/wcag22/">웹 콘텐츠 접근성 지침(WCAG) 2.2</a>: 1차 완료
+            <ul>
+                <li>
+                    <a href="https://a11ykr.github.io/wai/wcag22/understanding/"
+                    >WCAG 이해(<span lang="en">Understanding WCAG</span>) 2.2</a
+                    >: 초벌 완료(용어집 정리 및 링크 필요)
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="http://www.kwacc.or.kr/WAI/wcag21/"
+            >웹 콘텐츠 접근성 지침(WCAG) 2.1 <Badge type="info">외부 링크↗️</Badge></a
+            >
+        </li>
+        <li>
+            <a href="https://web.archive.org/web/20121107021930/http://archi.ssu.ac.kr/WCAG20/"
+            >웹 콘텐츠 접근성 지침(WCAG) 2.0 <Badge type="info">외부 링크↗️</Badge></a
+            >
+        </li>
+        <li>
+            <a href="https://web.archive.org/web/20110907032914/https://www.gregshin.pe.kr/wcag/wai-pageauth.html"
+            >웹 콘텐츠 접근성 지침(WCAG) 1.0 <Badge type="info">외부 링크↗️</Badge></a
+            >
+        </li>
+        <li>
+            <a href="https://a11ykr.github.io/wcag2ict-22/"
+            >웹이 아닌 정보통신기술에 대한 WCAG 2 적용 안내(WCAG2ICT-22-20241115)</a
+            >: 초벌 완료(오류 및 링크 수정 필요)
+        </li>
+        <li>
+            <a href="https://mulder21c.github.io/aria/"
+            >접근가능한 리치 인터넷 어플리케이션(WAI-ARIA) 1.2 <Badge type="info">외부 링크↗️</Badge></a
+            >
+            <ul>
+                <li>
+                    <a href="https://mulder21c.github.io/aria-practices/"
+                    >WAI-ARIA 작성 방법(WAI-ARIA Authoring Practices) 1.2 <Badge type="info">외부 링크↗️</Badge></a
+                    >
+                </li>
+                <li><a href="https://a11ykr.github.io/using-aria/WD-20180927/">ARIA 사용(Using ARIA)</a>: 초벌 완료</li>
+                <li><a href="https://a11ykr.github.io/html-aria/">HTML의 ARIA(ARIA in HTML)</a>: 초벌 완료</li>
+            </ul>
+        </li>
+    </ul>
+    <h3>번역 예정이거나 검토 중</h3>
+    <ul>
+        <li>
+            WCAG 2.2 관련
+            <ul>
+                <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/" lang="en">Techniques for WCAG 2.2</a>: 예정</li>
+                <li><a href="https://www.w3.org/WAI/WCAG2/supplemental/" lang="en">All Supplemental Guidance</a>: 예정</li>
+            </ul>
+        </li>
+        <li>
+            <a href="https://www.w3.org/TR/coga-usable/" lang="en"
+            >Making Content Usable for People with Cognitive and Learning Disabilities</a
+            >: 검토 중
+        </li>
+        <li>
+            <a href="https://w3c.github.io/accname/" lang="en">Accessible Name and Description Computation 1.2</a>: 검토 중
+        </li>
+    </ul>
+    <h2>국내 지침</h2>
+    <ul>
+        <li>
+            <a
+            href="https://www.rra.go.kr/ko/reference/kcsList_view.do?nb_seq=5247&cpage=1&nb_type=6&kcs_select0=ALL&kcs_select1=ALL&kcs_select2=%C1%A4%BA%B8%B1%E2%BC%FA&searchCon=nb_name&searchTxt=%C1%A2%B1%D9%BC%BA"
+            >한국형 웹 콘텐츠 접근성 지침(KWCAG) 2.2 <Badge type="info">외부 링크↗️</Badge></a
+            >
+        </li>
+        <li><a href="https://a11ykr.github.io/kwcag22/">KWCAG 2.2 비공식 온라인 버전</a></li>
+        <li>
+            <a
+            href="https://www.rra.go.kr/ko/reference/kcsList_view.do?nb_seq=1348&cpage=1&nb_type=6&kcs_select0=ALL&kcs_select1=ALL&kcs_select2=%C1%A4%BA%B8%B1%E2%BC%FA&searchCon=nb_name&searchTxt=%C1%A2%B1%D9%BC%BA"
+            >한국형 웹 콘텐츠 접근성 지침(KWCAG) 2.1 <Badge type="info">외부 링크↗️</Badge></a
+            >
+        </li>
+        <li>
+            <a
+            href="https://www.rra.go.kr/ko/reference/kcsList_view.do?nb_seq=1930&cpage=1&nb_type=6&kcs_select0=ALL&kcs_select1=ALL&kcs_select2=ALL&searchCon=nb_name&searchTxt=%C1%A2%B1%D9%BC%BA"
+            >모바일 애플리케이션 콘텐츠 접근성 지침 2.0 <Badge type="info">외부 링크↗️</Badge></a
+            >
+        </li>
+    </ul>
+    <h2>접근성 점검 도구 소개</h2>
+    <ul>
+        <li>
+            <a href="https://www.w3.org/WAI/test-evaluate/tools/list/" lang="en"
+            >Web Accessibility Evaluation Tools List <Badge type="info">외부 링크↗️</Badge></a
+            >: W3C에서 소개하는 접근성 점검 도구 목록
+        </li>
+        <li>
+            <a href="https://developer.chrome.com/docs/devtools/accessibility/reference?hl=ko"
+            >크롬 접근성 기능 참조 <Badge type="info">외부 링크↗️</Badge></a
+            >: 크롬 개발자 도구의 접근성 기능 소개
+        </li>
+    </ul>
+    <h3 id="페이지-단위-점검-도구">페이지 단위 점검 도구</h3>
+    <ul>
+        <li>
+            <a href="https://accessibility.kr/" lang="en">Accessibility Korea <Badge type="info">외부 링크↗️</Badge></a>:
+            온라인 웹 접근성 진단 서비스
+        </li>
+        <li>
+            <a href="https://www.accessibilitychecker.org/" lang="en"
+            >Accessibility checker <Badge type="info">외부 링크↗️</Badge></a
+            >: 영문. 일 3개 URL 무료 테스트 가능
+        </li>
+        <li>
+            <a href="https://wave.webaim.org/"
+            >WAVE, Web Accessibility Evaluation Tool <Badge type="info">외부 링크↗️</Badge></a
+            >
+        </li>
+    </ul>
+    <h3 id="개별-항목-검사도구">개별 항목 검사도구</h3>
+    <ul>
+        <li>
+            <a href="https://developer.paciellogroup.com/color-contrast-checker/"
+            >Colour Contrast Analyser (CCA) <Badge type="info">외부 링크↗️</Badge></a
+            >: 명도 대비 검사를 위한 설치용 소프트웨어. 윈도, 맥 지원.
+        </li>
+    </ul>
+    <h3 id="브라우저-확장-플러그인-외">브라우저 확장, 플러그인 외</h3>
+    <ul>
+        <li>
+            <a href="https://developer.chrome.com/docs/lighthouse/overview?hl=ko" lang="en"
+            >Lighthouse <Badge type="info">외부 링크↗️</Badge></a
+            >: 크롬 브라우저에 기본 탑재.
+        </li>
+        <li>
+            <a href="https://www.deque.com/axe/" lang="en">axe DevTools <Badge type="info">외부 링크↗️</Badge></a>: 브라우저
+            확장으로 설치 필요. 별도의 유료 버전 있음. <a
+            href="https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter"
+            >axe Accessibility Linter</a
+            > 참고.
+        </li>
+        <li>
+            <a href="https://goonoo.github.io/OpenWAX/" lang="en">OpenWAX <Badge type="info">외부 링크↗️</Badge></a>: 크롬 확장
+            및 북마클릿 제공
+        </li>
+        <li>
+            <a href="https://wave.webaim.org/extension/" lang="en">WAVE <Badge type="info">외부 링크↗️</Badge></a>: 브라우저용
+            WAVE. 크롬, 파이어폭스, 엣지 확장 지원.
+        </li>
+        <li>
+            <a href="https://accessibilityinsights.io/downloads/" lang="en"
+            >Accessibility Insights <Badge type="info">외부 링크↗️</Badge></a
+            >: 크롬, 엣지 확장 지원. 윈도용 소프트웨어 제공.
+        </li>
+        <li>
+            <a href="https://chromewebstore.google.com/detail/kwcag-a11y-inspector/ngcmkfaolkgkjbddhjnhgoekgaamjibo" lang="en"
+            >kwcag a11y inspector <Badge type="info">외부 링크↗️</Badge></a
+            >: 타겟 사이즈 측정용 크롬 확장.
+        </li>
+        <li>
+            <a
+            href="https://chromewebstore.google.com/detail/wcag-color-contrast-check/plnahcmalebffmaghcpcmpaciebdhgdf"
+            lang="en">WCAG Color contrast checker <Badge type="info">외부 링크↗️</Badge></a
+            >: 명도대비 측정용 크롬 확장
+        </li>
+    </ul>
+    <h2>기타</h2>
+    <h3 id="references">참고 자료</h3>
+    <ul>
+        <li>
+            <a href="https://www.w3.org/TR/ethical-web-principles/" lang="en"
+            >Ethical Web Principles <Badge type="info">외부 링크↗️</Badge></a
+            >
+        </li>
+        <li>
+            <a href="https://www.w3.org/WAI/ARIA/apg/" lang="en"
+            >ARIA Authoring Practices Guide (APG) <Badge type="info">외부 링크↗️</Badge></a
+            >
+        </li>
+        <li>
+            <a
+            href="https://www.etsi.org/human-factors-accessibility/en-301-549-v3-the-harmonized-european-standard-for-ict-accessibility"
+            >EN 301 549 V3 the harmonized European Standard for ICT Accessibility <Badge type="info">외부 링크↗️</Badge></a
+            >, <a href="https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf"
+            >PDF Download(EN 301 549 V3.2.1)</a
+            >
+        </li>
+        <li>
+            <a href="https://accessible.canada.ca/">Accessibility Standards Canada <Badge type="info">외부 링크↗️</Badge></a>
+        </li>
+        <li>
+            <a href="https://getevinced.github.io/mcag/"
+            >Mobile Content Accessibility Guidelines (MCAG) <Badge type="info">외부 링크↗️</Badge></a
+            > by <a href="https://www.evinced.com/">evinced <Badge type="info">외부 링크↗️</Badge></a>
+        </li>
+    </ul>
+</DefaultLayout>
+
+<style lang="scss">
+    .ex-link {
+        color: var(--neutral-500);
+        font-size: 0.8em;
+    }
+</style>

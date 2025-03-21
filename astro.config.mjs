@@ -8,7 +8,7 @@ import icon from 'astro-icon'
 export default defineConfig({
   compressHTML: true,
   site: 'https://a11ykr.github.io/',
-  base: '/blog/',
+  // base: '/blog/',
   integrations: [
     mdx(),
     icon(),
