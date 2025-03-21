@@ -7,7 +7,8 @@ import icon from 'astro-icon'
 // https://astro.build/config
 export default defineConfig({
   compressHTML: true,
-  site: 'https://a11ykr.github.io/blog/',
+  site: 'https://a11ykr.github.io/',
+  base: '/blog/',
   integrations: [
     mdx(),
     icon(),
