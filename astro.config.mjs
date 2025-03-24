@@ -17,6 +17,7 @@ export default defineConfig({
     }),
     compress(),
   ],
+  locale: 'ko',
   vite: {
     css: {
       preprocessorOptions: {
