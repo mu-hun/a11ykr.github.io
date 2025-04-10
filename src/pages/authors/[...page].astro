@@ -9,6 +9,8 @@ export async function getStaticPaths({ paginate }) {
   return paginate(allPosts, { pageSize: 6 })
 }
 const { page } = Astro.props
+console.log('Total posts:', page.total)
+console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No posts')
 ---
 
 <DefaultLayout
@@ -16,9 +18,9 @@ const { page } = Astro.props
   description="An example of a blog with dynamic content fetched from JSONPlaceholder using the title, body and userId.">
   <section class="my-12">
     <div class="space-content container">
-      <h1>리뷰</h1>
+      <h1>기여자들</h1>
       <p class="text-2xl">
-        웹 사이트, 모바일 앱, 키오스크, 게임 등 일상에서 만나는 디지털 콘텐츠와 하드웨어의 접근성에 대한 이야기를 합니다.
+        포스트, 번역, 개발, 질문 등 A11YKR에 기여하는 사람들입니다.
       </p>
     </div>
   </section>
