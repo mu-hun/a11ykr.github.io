@@ -42,8 +42,8 @@ const { Content } = await render(story)
   <section class="my-12">
     <div class="space-content container">
       <Content />
+      <p class="author">글: {story.data.author}</p>
     </div>
-    <p class="author">글: {story.data.author}</p>
   </section>
 </DefaultLayout>
 
