@@ -74,6 +74,7 @@ const {
 
         main {
           flex: 1 0 auto;
+          line-height: 1.75;
         }
 
         footer {
@@ -97,7 +98,6 @@ const {
           }
         }
       }
-
       .hidden {
         position: absolute;
         margin: -1px;
@@ -108,6 +108,22 @@ const {
         clip: rect(0, 0, 0, 0);
         border-width: 0;
         white-space: nowrap;
+      }
+
+      // Custom styles for the main content
+      #main-content {
+        margin: 0 auto;
+        max-width: 48rem;
+        ul {
+          display: block;
+          li {
+            list-style-type: disc;
+          }
+        }
+        blockquote {
+          border-left: 3px solid #ccc;
+          padding-left: 2rem;
+        }
       }
     </style>
   </body>

@@ -1,12 +1,12 @@
 import { defineCollection, z } from 'astro:content'
 import { glob } from 'astro/loaders'
 
-const reviewsCollection = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: 'src/content/reviews' }),
+const storyCollection = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: 'src/content/stories' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    slug: z.string().optional(),
+    slug: z.string(),
     author: z.string(),
     pubDate: z.string().or(z.date()),
     tags: z.array(z.string()).optional(),
@@ -26,6 +26,6 @@ const authorCollection = defineCollection({
 
 
 export const collections = {
-  'reviews': reviewsCollection,
+  'stories': storyCollection,
   'authors': authorCollection,
 };
