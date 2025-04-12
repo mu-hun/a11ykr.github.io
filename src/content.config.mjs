@@ -10,6 +10,7 @@ const storyCollection = defineCollection({
     author: z.string(),
     pubDate: z.string().or(z.date()),
     tags: z.array(z.string()).optional(),
+    draft: z.boolean().optional(),
     layout: z.string().optional(),
   }),
 })
