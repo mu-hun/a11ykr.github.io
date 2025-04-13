@@ -3,6 +3,8 @@ layout: ../layouts/MarkdownLayout.astro
 title: 소개
 ---
 
+<div class="narrow-wrap">
+
 # 소개
 
 A11Y는 접근성을 뜻하는 영단어 "<span lang="en">Accessibility</span>"를 줄여쓰는 말입니다. KR은 한국을 뜻하는 두글자 코드이고요.
@@ -32,8 +34,10 @@ A11Y KR은 한국의 디지털 접근성을 높일 수 있도록 관련 자료�
 ### 번역 예정이거나 검토 중
 
 *   WCAG 2.2 관련
-    *   [Techniques for WCAG 2.2](https://www.w3.org/WAI/WCAG22/Techniques/): 예정
-    *   [All Supplemental Guidance](https://www.w3.org/WAI/WCAG2/supplemental/): 예정
+    *   [Techniques for WCAG 2.2](https://www.w3.org/WAI/WCAG22/Techniques/)
+    *   [All Supplemental Guidance](https://www.w3.org/WAI/WCAG2/supplemental/)
 * 그 외
-*   [Making Content Usable for People with Cognitive and Learning Disabilities](https://www.w3.org/TR/coga-usable/): 검토 중
-*   [Accessible Name and Description Computation 1.2](https://w3c.github.io/accname/): 검토 중
+*   [Making Content Usable for People with Cognitive and Learning Disabilities](https://www.w3.org/TR/coga-usable/)
+*   [Accessible Name and Description Computation 1.2](https://w3c.github.io/accname/)
+
+</div>
