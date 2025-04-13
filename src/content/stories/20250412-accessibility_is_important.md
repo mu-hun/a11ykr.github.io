@@ -224,26 +224,20 @@ IT 기술이 만들어 내는 수많은 결과물은 세상을 만들고 있다.
 
 다양한 사람에게 접근성을 보장하는 일은 생각보다 고민할 거리가 많다. 그래도 가장 기본적인 것부터 시작하는 것을 추천한다. 자, 화이팅!
 
-<style lang="scss">
+<style>
 	figure svg path {
 		stroke-width: 4;
 	}
-	#main-content {
-		figure svg path {
-			stroke: black;
-		}
-		.fills {
-			fill: black;
-		}
+	#main-content figure svg path {
+		stroke: black;
 	}
-	.darkmode {
-		#main-content {
-			figure svg path {
-				stroke: white;
-			}
-			.fills {
-				fill: white;
-			}
-		}
+	#main-content figure svg .fills {
+		fill: black;
+	}
+	.darkmode #main-content figure svg path {
+		stroke: white;
+	}
+	.darkmode #main-content figure svg .fills {
+		fill: white;
 	}
 </style>
