@@ -33,18 +33,20 @@ const { Content } = await render(story)
       </Breadcrumbs>
     </div>
   </div>
-  <section class="my-12">
-    <div class="container">
-      <h1>{story.data.title}</h1><br />
-      <p>{dateFormat(story.data.pubDate)}</p>
-    </div>
-  </section>
-  <section class="my-12">
-    <div class="space-content container">
-      <Content />
-      <p class="author">글: {story.data.author}</p>
-    </div>
-  </section>
+  <article>
+    <section class="my-12">
+      <div class="container">
+        <h1>{story.data.title}</h1><br />
+        <p>{dateFormat(story.data.pubDate)}</p>
+      </div>
+    </section>
+    <section class="my-12">
+      <div class="space-content container">
+        <Content />
+        <p class="author">글: {story.data.author}</p>
+      </div>
+    </section>
+  </article>
 </DefaultLayout>
 
 <style lang="scss">
@@ -62,6 +64,7 @@ const { Content } = await render(story)
       grid-template-columns: repeat(3, 1fr);
     }
   }
+  article{}
   .author {
     margin-top: 2rem;
     color: var(--text-300);
