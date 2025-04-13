@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
 title: 왜 접근성이 중요한가?
-description: 장애와 접근성의 의미가 달라졌다. 왜 기술이 필요한 것일까?
+description: 장애와 접근성의 의미가 달라졌다. 기술은 왜 접근성을 고려해야 하는 것일까?
 slug: accessibility-is-important
 author: 현진
 pubDate: 2025-04-13
