@@ -15,7 +15,6 @@ interface Props {
 }
 
 const { page } = Astro.props
-console.log(page.data[0])
 ---
 
 <DefaultLayout
@@ -37,8 +36,8 @@ console.log(page.data[0])
         {
           page.data.map((story) => (
             <li>
-              <Card url={'/stories/' + story.id} title={story.data.title} footer={'Author: ' + story.data.author}>
-                {story.data.description} img={story.data.image}
+              <Card img={story.data.img} url={'/stories/' + story.id} title={story.data.title} footer={'글: ' + story.data.author}>
+                {story.data.description}
               </Card>
             </li>
           ))

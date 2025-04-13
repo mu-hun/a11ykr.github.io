@@ -1,12 +1,12 @@
 ---
 layout: ../../layouts/MarkdownLayout.astro
 title: 왜 접근성이 중요한가?
-description: 테스트 포스트
+description: 장애와 접근성의 의미가 달라졌다. 왜 기술이 필요한 것일까?
 slug: accessibility-is-important
 author: 현진
-pubDate: 2025-04-12
-draft: true
-image: /blog/images/sketchplanations-the-curb-cut-effect.png
+pubDate: 2025-04-13
+draft: false
+img: /images/sketchplanations-the-curb-cut-effect.png
 tags: ["accessibility", "reason", "development"]
 ---
 

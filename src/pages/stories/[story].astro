@@ -19,7 +19,7 @@ interface Props {
   story: CollectionEntry<'stories'>
 }
 
-const { story, pubDate } = Astro.props
+const { story } = Astro.props
 const { Content } = await render(story)
 ---
 
