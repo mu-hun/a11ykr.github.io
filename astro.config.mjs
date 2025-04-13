@@ -8,8 +8,8 @@ import icon from 'astro-icon'
 export default defineConfig({
   compressHTML: true,
   site: 'https://a11ykr.github.io/',
-  base: process.env.NODE_ENV === 'production' ? '/blog/' : '/',
-  // base: '/blog/',
+  // base: process.env.NODE_ENV === 'production' ? '/blog/' : '/',
+  base: '/',
   integrations: [
     mdx(),
     icon(),
