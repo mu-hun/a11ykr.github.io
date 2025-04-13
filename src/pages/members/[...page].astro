@@ -4,10 +4,17 @@ import { Card, Pagination } from 'accessible-astro-components'
 import { getCollection } from 'astro:content'
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = await getCollection('reviews')
+  const allPosts = await getCollection('members')
   allPosts.sort((a, b) => a.data.title.localeCompare(b.data.title))
   return paginate(allPosts, { pageSize: 6 })
 }
+
+// title: z.string(),
+// description: z.string(),
+// slug: z.string().optional(),
+// img: z.string().optional(),
+// layout: z.string().optional(),
+
 const { page } = Astro.props
 console.log('Total posts:', page.total)
 console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No posts')
@@ -20,30 +27,28 @@ console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No pos
     <div class="space-content container">
       <h1>기여자들</h1>
       <p class="text-2xl">
-        포스트, 번역, 개발, 질문 등 A11YKR에 기여하는 사람들입니다.
+        포스트, 번역, 개발, 질문 등 다양한 방식으로 A11YKR에 기여하는 사람들입니다.
       </p>
     </div>
   </section>
   <section class="my-12">
     <div class="container">
-      <p class="text-sm"><em>전체 {page.total}개 포스트 중 {page.start + 1}부터 {page.end + 1}까지</em></p>
+      <p class="text-sm"><em>전체 {page.total}명 중 {page.start + 1}부터 {page.end + 1}까지</em></p>
       <ul class="my-3">
         {
           page.data.map((post) => (
             <li>
-              <Card url={'/reviews/' + post.slug} title={post.data.title} footer={'작성: ' + post.data.author}>
-                {post.data.description}
-              </Card>
+              <Card url={'/members/' + post.slug} title={post.data.title}></Card>
             </li>
           ))
         }
       </ul>
       <div class="mt-12 grid place-content-center">
         <Pagination
-          firstPage={page.url.prev ? '/reviews' : null}
+          firstPage={page.url.prev ? '/members' : null}
           previousPage={page.url.prev ? page.url.prev : null}
           nextPage={page.url.next ? page.url.next : null}
-          lastPage={page.url.next ? `/reviews/${Math.ceil(page.total / page.size)}` : null}
+          lastPage={page.url.next ? `/members/${Math.ceil(page.total / page.size)}` : null}
           currentPage={page.currentPage}
           totalPages={Math.ceil(page.total / page.size)}
         />

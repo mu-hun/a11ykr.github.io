@@ -10,18 +10,18 @@ const storyCollection = defineCollection({
     author: z.string(),
     pubDate: z.string().or(z.date()),
     tags: z.array(z.string()).optional(),
-    img: z.string(),
+    img: z.string().optional(),
     draft: z.boolean().optional(),
     layout: z.string().optional(),
   }),
 })
-const authorCollection = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: 'src/content/authors' }),
+const memberCollection = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: 'src/content/members' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
     slug: z.string().optional(),
-    tags: z.array(z.string()).optional(),
+    img: z.string().optional(),
     layout: z.string().optional(),
   }),
 })
@@ -29,5 +29,5 @@ const authorCollection = defineCollection({
 
 export const collections = {
   'stories': storyCollection,
-  'authors': authorCollection,
+  'members': memberCollection,
 };
