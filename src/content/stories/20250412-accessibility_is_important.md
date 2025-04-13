@@ -14,7 +14,7 @@ tags: ["accessibility", "reason", "development"]
 ## 다양한 상황에 대한 이해
 > 거의 모든 사람이 인생의 어느 시점에서 일시적 또는 영구적으로 장애를 경험하게 된다.
 >
-> <small>"Almost everyone will temporarily or permanently experience disability at some point in their life."</small>
+> <small lang="en">"Almost everyone will temporarily or permanently experience disability at some point in their life."</small>
 >
 > -- [세계보건기구(WHO)](https://www.who.int/southeastasia/activities/strengthening-disability-inclusion-in-health-services "World Health Organization")
 
