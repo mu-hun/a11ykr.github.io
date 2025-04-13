@@ -21,14 +21,12 @@ console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No pos
 ---
 
 <DefaultLayout
-  title="리뷰"
-  description="An example of a blog with dynamic content fetched from JSONPlaceholder using the title, body and userId.">
+  title="기여자들"
+  description="글쓰기, 번역, 개발, 질문 등 다양한 방식으로 A11YKR에 기여하는 사람들입니다.">
   <section class="my-12">
     <div class="space-content container">
       <h1>기여자들</h1>
-      <p class="text-2xl">
-        포스트, 번역, 개발, 질문 등 다양한 방식으로 A11YKR에 기여하는 사람들입니다.
-      </p>
+      <p class="text-2xl">글쓰기, 번역, 개발, 질문 등 다양한 방식으로 A11YKR에 기여하는 사람들입니다.</p>
     </div>
   </section>
   <section class="my-12">
@@ -38,7 +36,7 @@ console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No pos
         {
           page.data.map((post) => (
             <li>
-              <Card url={'/members/' + post.slug} title={post.data.title}></Card>
+              <Card url={'/members/' + post.slug} title={post.data.title} />
             </li>
           ))
         }
