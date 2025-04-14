@@ -1,0 +1,65 @@
+---
+import { Icon } from 'astro-icon/components'
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+export async function getStaticPaths() {
+	const members = await getCollection('members')
+	return members.map((member) => {
+		return {
+			params: { member: member.data.userid },
+			props: { member },
+		}
+	})
+}
+
+interface Props {
+	member: CollectionEntry<'members'>
+}
+
+const { member } = Astro.props
+console.log(member.data)
+---
+
+<aside class="member">
+	<dl>
+		{
+			member.data.link ? (
+				<dt>
+					<a href={member.data.link} target="_blank">
+						{member.data.title}
+					</a>
+				</dt>
+			) : (
+				<dt>{member.data.title}</dt>
+			)
+		}
+		{
+			member.data.img ? (
+				<dd class="image">
+					<img src={member.data.img} alt="" />
+				</dd>
+			) : (
+				''
+			)
+		}
+		<dd>{member.data.description}</dd>
+	</dl>
+</aside>
+
+<style lang="scss">
+	.member {
+		float: right;
+		width: 320px;
+		dt {
+			margin-left: 74px;
+		}
+		img {
+			display: block;
+			float: left;
+			margin-top: -1rem;
+			margin-right: 10px;
+			max-width: 64px;
+		}
+	}
+</style>

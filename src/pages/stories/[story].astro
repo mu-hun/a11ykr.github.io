@@ -1,9 +1,10 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import MemberInfo from '../../components/MemberInfo.astro'
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 import { getCollection, render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
-import { dateFormat } from '/src/utils/DateFormat'
+import { dateFormat } from '../../utils/DateFormat'
 
 export async function getStaticPaths() {
   const stories = await getCollection('stories')
@@ -17,10 +18,27 @@ export async function getStaticPaths() {
 
 interface Props {
   story: CollectionEntry<'stories'>
+  authorData: CollectionEntry<'members'>
 }
 
 const { story } = Astro.props
 const { Content } = await render(story)
+
+const members = await getCollection('members')
+const authorData = members.find((m) => m.data.userid === story.data.author) || {
+  data: {
+    userid: 'unknown',
+    name: '알 수 없는 작성자',
+    link: '#',
+  },
+}
+
+if (!authorData) {
+  console.warn(`Author with userid ${story.data.author} not found.`);
+}
+
+console.log(members.length) // 기대값: 1 이상
+console.log(members[0]?.data) // 기대값: 'resistan'
 ---
 
 <DefaultLayout title={story.data.title} description={story.data.description} url={story.data.title}>
@@ -43,7 +61,7 @@ const { Content } = await render(story)
     <section class="my-12">
       <div class="space-content container">
         <Content />
-        <p class="author">글: {story.data.author}</p>
+        <MemberInfo member={authorData} />
       </div>
     </section>
   </article>
@@ -64,7 +82,8 @@ const { Content } = await render(story)
       grid-template-columns: repeat(3, 1fr);
     }
   }
-  article{}
+  article {
+  }
   .author {
     margin-top: 2rem;
     color: var(--text-300);

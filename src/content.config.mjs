@@ -18,15 +18,13 @@ const storyCollection = defineCollection({
 const memberCollection = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/members' }),
   schema: z.object({
+    userid: z.string(),
     title: z.string(),
-    description: z.string(),
-    slug: z.string().optional(),
+    description: z.string().optional(),
     link: z.string().optional(),
     img: z.string().optional(),
-    layout: z.string().optional(),
   }),
 })
-
 
 export const collections = {
   'stories': storyCollection,

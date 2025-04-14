@@ -9,12 +9,6 @@ export async function getStaticPaths({ paginate }) {
   return paginate(allPosts, { pageSize: 6 })
 }
 
-// title: z.string(),
-// description: z.string(),
-// slug: z.string().optional(),
-// img: z.string().optional(),
-// layout: z.string().optional(),
-
 const { page } = Astro.props
 console.log('Total posts:', page.total)
 console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No posts')
@@ -36,7 +30,7 @@ console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No pos
         {
           page.data.map((post) => (
             <li>
-              <Card url={'/members/' + post.slug} title={post.data.title} />
+              <Card url={post.link} title={post.data.title} />
             </li>
           ))
         }
