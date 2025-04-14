@@ -21,6 +21,7 @@ const memberCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     slug: z.string().optional(),
+    link: z.string().optional(),
     img: z.string().optional(),
     layout: z.string().optional(),
   }),
