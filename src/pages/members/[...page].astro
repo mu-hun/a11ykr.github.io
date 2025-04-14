@@ -20,7 +20,7 @@ console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No pos
   <section class="my-12">
     <div class="space-content container">
       <h1>기여자들</h1>
-      <p class="text-2xl">글쓰기, 번역, 개발, 질문 등 다양한 방식으로 A11YKR에 기여하는 사람들입니다.</p>
+      <p class="text-2xl">글쓰기, 번역, 개발, 질문 등 다양한 방식으로 이 공간에 기여하는 사람들입니다.</p>
     </div>
   </section>
   <section class="my-12">
@@ -30,7 +30,9 @@ console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No pos
         {
           page.data.map((post) => (
             <li>
-              <Card url={post.link} title={post.data.title} />
+              <Card url={post.link} title={post.data.title} img={post.data.img}>
+                {post.data.description}
+              </Card>
             </li>
           ))
         }
