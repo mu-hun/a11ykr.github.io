@@ -9,6 +9,7 @@ const {
   title = 'A11YKR',
   description = '한국의 디지털 접근성을 높일 수 있도록 관련 자료를 수집하고 의견을 나누는 공간입니다.',
   url = Astro.site,
+  slug,
   image = 'social-preview-image.png',
   author = 'A11YKR',
 } = Astro.props
@@ -23,7 +24,7 @@ const {
     <!-- favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <SiteMeta title={title} description={description.substring(0, 100)} url={url} image={image} author={author} />
+    <SiteMeta title={title} description={description.substring(0, 100)} url={url} slug={slug} image={image} author={author} />
   </head>
   <body>
     <Header />
