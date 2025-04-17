@@ -4,6 +4,7 @@ import { ViewTransitions } from 'astro:transitions'
 const { title, description, url, image, author } = Astro.props
 
 let subtitle = 'A11YKR'
+// console.log(Astro.site+url)
 ---
 
 <!-- general meta -->
@@ -15,7 +16,7 @@ let subtitle = 'A11YKR'
 <meta property="og:title" content={`${title} - ${subtitle}`} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
-<meta property="og:url" content={url} />
+<meta property="og:url" content={`${Astro.site}${url}`} />
 <meta property="og:image" content={`${Astro.site}${image}`} />
 
 <!-- twitter card -->

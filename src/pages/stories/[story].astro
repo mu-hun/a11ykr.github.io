@@ -41,7 +41,7 @@ if (!authorData) {
 // console.log(members[0]?.data)
 ---
 
-<DefaultLayout title={story.data.title} description={story.data.description} url={story.data.slug}>
+<DefaultLayout title={story.data.title} description={story.data.description} url={'stories/'+story.data.slug} img={story.data.img}>
   <div class="container">
     <div class="mt-12">
       <Breadcrumbs>
