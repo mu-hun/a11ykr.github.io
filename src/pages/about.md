@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/MarkdownLayout.astro
 title: 소개
+slug: about
 ---
 
 <div class="narrow-wrap">
