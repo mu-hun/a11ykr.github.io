@@ -25,23 +25,21 @@ const { story } = Astro.props
 const { Content } = await render(story)
 
 const members = await getCollection('members')
+
 const authorData = members.find((m) => m.data.userid === story.data.author) || {
   data: {
     userid: 'unknown',
-    name: '익명의 기고자',
-    link: '#',
+    title: '익명의 기고자',
   },
 }
-
-if (!authorData) {
-  console.warn(`Author with userid ${story.data.author} not found.`)
-}
-
-// console.log(members.length)
-// console.log(members[0]?.data)
+console.log(story.data.author)
 ---
 
-<DefaultLayout title={story.data.title} description={story.data.description} url={'stories/'+story.data.slug} img={story.data.img}>
+<DefaultLayout
+  title={story.data.title}
+  description={story.data.description}
+  url={'stories/' + story.data.slug}
+  img={story.data.img}>
   <div class="container">
     <div class="mt-12">
       <Breadcrumbs>

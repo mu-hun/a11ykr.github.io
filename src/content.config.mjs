@@ -21,8 +21,12 @@ const memberCollection = defineCollection({
     userid: z.string(),
     title: z.string(),
     description: z.string().optional(),
-    link: z.string().optional(),
     img: z.string().optional(),
+    homepage: z.string().optional(),
+    github: z.string().optional(),
+    twitter: z.string().optional(),
+    facebook: z.string().optional(),
+    linkedin: z.string().optional(),
   }),
 })
 

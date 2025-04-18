@@ -30,7 +30,7 @@ console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No pos
         {
           page.data.map((post) => (
             <li>
-              <Card url={post.data.link} title={post.data.title} img={post.data.img}>
+              <Card url={post.data.homepage} title={post.data.title} img={post.data.img}>
                 {post.data.description}
               </Card>
             </li>
