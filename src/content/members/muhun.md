@@ -2,7 +2,7 @@
 userid: muhun
 title: 김무훈
 description: 하고 싶은 말
-img: https://0.gravatar.com/avatar/a68c8fbbf98cc973890ac269a1126ce115e669dd9c5452f1f8bc8425022e85c7?size=512
+img: https://pbs.twimg.com/profile_images/1890691474637152256/cVQp1HoN_400x400.jpg
 homepage: https://muhun.link/
 github: https://github.com/mu-hun
 twitter: https://x.com/iamuhun
