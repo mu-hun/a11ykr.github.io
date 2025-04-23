@@ -59,7 +59,9 @@ console.log(story.data.author)
     <section class="my-12">
       <div class="space-content container">
         <Content />
-        <MemberInfo member={authorData} />
+        <aside class="author">
+          <MemberInfo member={authorData} />
+        </aside>
       </div>
     </section>
   </article>
@@ -83,9 +85,11 @@ console.log(story.data.author)
   article {
   }
   .author {
+    float: right;
+		margin-bottom: 80px;
+		max-width: 300px;
     margin-top: 2rem;
     color: var(--text-300);
     font-size: 0.9rem;
-    text-align: right;
   }
 </style>

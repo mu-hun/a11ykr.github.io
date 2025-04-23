@@ -18,74 +18,68 @@ interface Props {
 }
 
 const { member } = Astro.props
-console.log(member.data)
+// console.log(member.data)
 ---
 
-<aside class="member">
-	<dl>
-		<dt>{member.data.title}</dt>
+<dl class="member">
+	<dt>{member.data.title}</dt>
+	{
+		member.data.img ? (
+			<dd class="image">
+				<img src={member.data.img} alt="" />
+			</dd>
+		) : (
+			''
+		)
+	}
+	<dd>{member.data.description}</dd>
+	<dd>
 		{
-			member.data.img ? (
-				<dd class="image">
-					<img src={member.data.img} alt="" />
-				</dd>
-			) : (
-				''
+			member.data.homepage && (
+				<a href={member.data.homepage}>
+					<Icon name="ion:home" />
+				</a>
 			)
 		}
-		<dd>{member.data.description}</dd>
-		<dd>
-			{
-				member.data.homepage && (
-					<a href={member.data.homepage}>
-						<Icon name="ion:home" />
-					</a>
-				)
-			}
-			{
-				member.data.github && (
-					<a href={member.data.github}>
-						<Icon name="ion:logo-github" />
-					</a>
-				)
-			}
-			{
-				member.data.twitter && (
-					<a href={member.data.twitter}>
-						<Icon name="ion:logo-twitter" />
-					</a>
-				)
-			}
-			{
-				member.data.facebook && (
-					<a href={member.data.facebook}>
-						<Icon name="ion:logo-facebook" />
-					</a>
-				)
-			}
-			{
-				member.data.linkedin && (
-					<a href={member.data.linkedin}>
-						<Icon name="ion:logo-linkedin" />
-					</a>
-				)
-			}
-		</dd>
-	</dl>
-</aside>
-
+		{
+			member.data.github && (
+				<a href={member.data.github}>
+					<Icon name="ion:logo-github" />
+				</a>
+			)
+		}
+		{
+			member.data.twitter && (
+				<a href={member.data.twitter}>
+					<Icon name="ion:logo-twitter" />
+				</a>
+			)
+		}
+		{
+			member.data.facebook && (
+				<a href={member.data.facebook}>
+					<Icon name="ion:logo-facebook" />
+				</a>
+			)
+		}
+		{
+			member.data.linkedin && (
+				<a href={member.data.linkedin}>
+					<Icon name="ion:logo-linkedin" />
+				</a>
+			)
+		}
+	</dd>
+</dl>
 <style lang="scss">
 	.member {
-		float: right;
-		margin-bottom: 80px;
-		max-width: 320px;
 		dt,
 		dd:not(.image) {
 			margin-left: 74px;
 		}
 		dd a {
 			display: inline-flex;
-			padding: .4rem .2rem;
+			padding: 0.4rem 0.2rem;
 			font-size: 1.4rem;
 		}
 		img {

@@ -1,17 +1,21 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
-import { Card, Pagination } from 'accessible-astro-components'
+import MemberInfo from '../../components/MemberInfo.astro'
+import { Pagination } from 'accessible-astro-components'
 import { getCollection } from 'astro:content'
+import type { GetStaticPaths, Page } from 'astro'
+import type { CollectionEntry } from 'astro:content'
 
-export async function getStaticPaths({ paginate }) {
-  const allPosts = await getCollection('members')
-  allPosts.sort((a, b) => a.data.title.localeCompare(b.data.title))
-  return paginate(allPosts, { pageSize: 6 })
+export const getStaticPaths = (async ({ paginate }) => {
+  const members = await getCollection('members')
+  return paginate(members.reverse(), { pageSize: 12 })
+}) satisfies GetStaticPaths
+
+interface Props {
+  page: Page<CollectionEntry<'members'>>
 }
 
 const { page } = Astro.props
-console.log('Total posts:', page.total)
-console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No posts')
 ---
 
 <DefaultLayout
@@ -28,11 +32,9 @@ console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No pos
       <p class="text-sm"><em>전체 {page.total}명 중 {page.start + 1}부터 {page.end + 1}까지</em></p>
       <ul class="my-3">
         {
-          page.data.map((post) => (
+          page.data.map((member) => (
             <li>
-              <Card url={post.data.homepage} title={post.data.title} img={post.data.img}>
-                {post.data.description}
-              </Card>
+              <MemberInfo member={member} />
             </li>
           ))
         }
@@ -55,7 +57,7 @@ console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No pos
   ul {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 4rem;
+    grid-gap: 2rem;
 
     @media (min-width: 550px) {
       grid-template-columns: repeat(2, 1fr);
@@ -64,6 +66,12 @@ console.log('First post:', page.data[0] ? JSON.stringify(page.data[0]) : 'No pos
 
     @media (min-width: 950px) {
       grid-template-columns: repeat(3, 1fr);
+    }
+
+    aside {
+      display: block;
+      width: 100%;
+      text-align: left;
     }
   }
 </style>
