@@ -53,13 +53,3 @@ A11YKR은 한국의 디지털 접근성을 높일 수 있도록 관련 자료를
 *   [Accessible Name and Description Computation 1.2](https://w3c.github.io/accname/)
 
 </div>
-
-
-
-<style lang="scss">
-.narrow-wrap {
-  h1, h2, h3, h4 {
-    margin:1.5rem 0 .5rem;
-  }
-}
-</style>
