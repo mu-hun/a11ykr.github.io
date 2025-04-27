@@ -1,5 +1,5 @@
 ---
 userid: reyoucat
 title: 리유
-img: /avatar.png
+img: https://avatars.githubusercontent.com/u/8119974
 ---
