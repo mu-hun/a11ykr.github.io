@@ -77,6 +77,21 @@ const { member } = Astro.props
 		dd:not(.image) {
 			margin-left: 74px;
 		}
+		dt {
+			font-weight: bold;
+		}
+		dd.image {
+			margin-top: -1rem;
+			margin-bottom: -2.5rem;
+			border-radius: 8px;
+			padding-top: 1rem;
+			width: 64px;
+			overflow: hidden;
+		}
+		dd.bio {
+			margin-bottom: 0.75rem;
+			min-height: 0.25rem;
+		}
 		dd a {
 			display: inline-flex;
 			padding: 0.4rem 0.2rem;
@@ -88,9 +103,6 @@ const { member } = Astro.props
 			margin-top: -1rem;
 			margin-right: 10px;
 			max-width: 64px;
-		}
-		.bio {
-			min-height: 16px;
 		}
 	}
 </style>
