@@ -1,11 +1,13 @@
 ---
 import Navigation from '../components/Navigation.astro'
-import { SkipLink } from 'accessible-astro-components'
+// import { SkipLink } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
 ---
 
 <header>
-  <SkipLink />
+  <div class="skip-link">
+    <a href="#main-content">본문 바로가기</a>
+  </div>
   <Navigation>
     <li class="menu-item">
       <a href="/about/">소개</a>
@@ -66,5 +68,30 @@ import { Icon } from 'astro-icon/components'
         }
       }
     }
+  }
+  :where(.skip-link a) {
+    position: absolute;
+    z-index: 9999;
+    transition: inset-block-start 0.2s ease-in-out;
+    inset-block-start: -100vh;
+    inset-inline-start: 0;
+    border-end-end-radius: 0.5rem;
+    background: light-dark(hsl(0 0% 100%), hsl(215 25% 15%));
+    padding-inline: 3.25rem;
+    padding-block: 1rem;
+    color: light-dark(hsl(215 25% 27%), hsl(215 25% 89%));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(.skip-link a) {
+      transition: none;
+    }
+  }
+
+  :where(.skip-link a:hover),
+  :where(.skip-link a:focus-visible) {
+    inset-block-start: 0;
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
   }
 </style>
