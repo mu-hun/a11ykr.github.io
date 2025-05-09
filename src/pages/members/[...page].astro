@@ -2,10 +2,16 @@
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import MemberInfo from '../../components/MemberInfo.astro'
 import { getCollection } from 'astro:content'
+import type { GetStaticPaths } from 'astro'
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const members = await getCollection('members')
+  return paginate(members, { pageSize: 10000 })
+}) satisfies GetStaticPaths
 
 // 모든 멤버 가져오기
 const allMembers = await getCollection('members')
-console.log('전체 멤버 수:', allMembers.length)
+// console.log('전체 멤버 수:', allMembers.length)
 ---
 
 <DefaultLayout
@@ -25,7 +31,9 @@ console.log('전체 멤버 수:', allMembers.length)
         {
           allMembers.length > 0 ? (
             allMembers.map((member) => (
-              <li><MemberInfo member={member} /></li>
+              <li>
+                <MemberInfo member={member} />
+              </li>
             ))
           ) : (
             <li class="empty-message">표시할 멤버가 없습니다.</li>
