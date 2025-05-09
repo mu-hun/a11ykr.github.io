@@ -1,21 +1,11 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import MemberInfo from '../../components/MemberInfo.astro'
-import { Pagination } from 'accessible-astro-components'
 import { getCollection } from 'astro:content'
-import type { GetStaticPaths, Page } from 'astro'
-import type { CollectionEntry } from 'astro:content'
 
-export const getStaticPaths = (async ({ paginate }) => {
-  const members = await getCollection('members')
-  return paginate(members, { pageSize: 12 })
-}) satisfies GetStaticPaths
-
-interface Props {
-  page: Page<CollectionEntry<'members'>>
-}
-
-const { page } = Astro.props
+// 모든 멤버 가져오기
+const allMembers = await getCollection('members')
+console.log('전체 멤버 수:', allMembers.length)
 ---
 
 <DefaultLayout
@@ -29,26 +19,19 @@ const { page } = Astro.props
   </section>
   <section class="my-12">
     <div class="container">
-      <p class="text-sm"><em>전체 {page.total}명 중 {page.start + 1}부터 {page.end + 1}까지</em></p>
+      <p class="text-sm"><em>전체 {allMembers.length}명</em></p>
+
       <ul class="my-3">
         {
-          page.data.map((member) => (
-            <li>
-              <MemberInfo member={member} />
-            </li>
-          ))
+          allMembers.length > 0 ? (
+            allMembers.map((member) => (
+              <li><MemberInfo member={member} /></li>
+            ))
+          ) : (
+            <li class="empty-message">표시할 멤버가 없습니다.</li>
+          )
         }
       </ul>
-      <div class="mt-12 grid place-content-center">
-        <Pagination
-          firstPage={page.url.prev ? '/members' : null}
-          previousPage={page.url.prev ? page.url.prev : null}
-          nextPage={page.url.next ? page.url.next : null}
-          lastPage={page.url.next ? `/members/${Math.ceil(page.total / page.size)}` : null}
-          currentPage={page.currentPage}
-          totalPages={Math.ceil(page.total / page.size)}
-        />
-      </div>
     </div>
   </section>
 </DefaultLayout>
@@ -73,5 +56,13 @@ const { page } = Astro.props
       width: 100%;
       text-align: left;
     }
+  }
+
+  .empty-message {
+    grid-column: 1 / -1;
+    border-radius: 0.5rem;
+    background-color: var(--theme-surface-1, #f8f9fa);
+    padding: 2rem;
+    text-align: center;
   }
 </style>

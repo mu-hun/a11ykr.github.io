@@ -22,7 +22,7 @@ const { member } = Astro.props
 ---
 
 <dl class="member">
-	<dt>{member.data.title}</dt>
+	<dt><a href={`/members/${member.data?.userid || member.slug}`} class="member-link">{member.data.title}</a></dt>
 	{
 		member.data.img ? (
 			<dd class="image">
@@ -73,6 +73,15 @@ const { member } = Astro.props
 </dl>
 <style lang="scss">
 	.member {
+		.member-link {
+			display: block;
+			transition: transform 0.2s ease-in-out;
+			text-decoration: none;
+
+			&:hover {
+				transform: translateX(-5px);
+			}
+		}
 		dt,
 		dd:not(.image) {
 			margin-left: 74px;

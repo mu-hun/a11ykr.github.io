@@ -1,0 +1,281 @@
+---
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import { Icon } from 'astro-icon/components'
+import { getCollection } from 'astro:content'
+import type { GetStaticPaths } from 'astro'
+
+export const getStaticPaths = (async () => {
+	const members = await getCollection('members')
+
+	return members.map((member) => ({
+		params: { slug: member.data.userid || member.slug },
+		props: { member },
+	}))
+}) satisfies GetStaticPaths
+
+const { member } = Astro.props
+
+// stories 컬렉션에서 해당 멤버가 작성한 글 찾기
+const allStories = await getCollection('stories')
+const memberStories = allStories.filter((story) => story.data.author === member.data.userid)
+
+// 글 날짜 기준으로 정렬 (최신 글이 먼저 오도록)
+memberStories.sort((a, b) => {
+	const dateA = a.data.pubDate instanceof Date ? a.data.pubDate : new Date(a.data.pubDate || 0)
+	const dateB = b.data.pubDate instanceof Date ? b.data.pubDate : new Date(b.data.pubDate || 0)
+	return dateB.getTime() - dateA.getTime()
+})
+
+// 임시 글(draft) 제외
+const publishedStories = memberStories.filter((story) => !story.data.draft)
+---
+
+<DefaultLayout
+	title={member.data.title || '멤버 정보'}
+	description={member.data.description || `${member.data.title || '멤버'}님의 프로필입니다.`}>
+	<section class="my-12">
+		<div class="container">
+			<div class="back-link">
+				<a href="/members/">← 모든 멤버 보기</a>
+			</div>
+
+			<div class="member-detail">
+				<dl class="member">
+					<dt class="title">{member.data.title}</dt>
+					{
+						member.data.img ? (
+							<dd class="image">
+								<img src={member.data.img} alt="" />
+							</dd>
+						) : (
+							''
+						)
+					}
+					<dd class="bio">{member.data.description}</dd>
+					<dd class="links">
+						{
+							member.data.homepage && (
+								<a href={member.data.homepage} title="홈페이지" target="_blank" rel="noopener noreferrer">
+									<Icon name="ion:home" />
+								</a>
+							)
+						}
+						{
+							member.data.github && (
+								<a href={member.data.github} title="GitHub" target="_blank" rel="noopener noreferrer">
+									<Icon name="ion:logo-github" />
+								</a>
+							)
+						}
+						{
+							member.data.twitter && (
+								<a href={member.data.twitter} title="Twitter/X" target="_blank" rel="noopener noreferrer">
+									<Icon name="ion:logo-twitter" />
+								</a>
+							)
+						}
+						{
+							member.data.facebook && (
+								<a href={member.data.facebook} title="Facebook" target="_blank" rel="noopener noreferrer">
+									<Icon name="ion:logo-facebook" />
+								</a>
+							)
+						}
+						{
+							member.data.linkedin && (
+								<a href={member.data.linkedin} title="LinkedIn" target="_blank" rel="noopener noreferrer">
+									<Icon name="ion:logo-linkedin" />
+								</a>
+							)
+						}
+					</dd>
+				</dl>
+
+				{
+					member.body && (
+						<div class="member-content">
+							<Fragment set:html={member.body} />
+						</div>
+					)
+				}
+
+				{/* 멤버가 작성한 스토리 목록 */}
+				{
+					publishedStories.length > 0 && (
+						<div class="member-stories">
+							<h2>작성한 글 목록</h2>
+							<ul>
+								{publishedStories.map((story) => (
+									<li>
+										<a href={`/stories/${story.data.slug || story.slug}`}>
+											<div class="story-info">
+												{story.data.pubDate && (
+													<time
+														datetime={
+															story.data.pubDate instanceof Date
+																? story.data.pubDate.toISOString()
+																: new Date(story.data.pubDate).toISOString()
+														}>
+														{story.data.pubDate instanceof Date
+															? story.data.pubDate.toLocaleDateString('ko-KR', {
+																	year: 'numeric',
+																	month: 'long',
+																	day: 'numeric',
+																})
+															: new Date(story.data.pubDate).toLocaleDateString('ko-KR', {
+																	year: 'numeric',
+																	month: 'long',
+																	day: 'numeric',
+																})}
+													</time>
+												)}
+												<h3 class="story-title">{story.data.title}</h3>
+												{story.data.description && <p class="story-description">{story.data.description}</p>}
+											</div>
+										</a>
+									</li>
+								))}
+							</ul>
+						</div>
+					)
+				}
+			</div>
+		</div>
+	</section>
+</DefaultLayout>
+
+<style lang="scss">
+	.back-link {
+		margin-bottom: 2rem;
+		a {
+			display: inline-block;
+			padding: 0.5rem 0;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.member-detail {
+		margin: 0 auto;
+		border-radius: 0.5rem;
+		padding: 2rem;
+		max-width: 800px;
+	}
+
+	.member {
+		dt,
+		dd:not(.image) {
+			margin-left: 90px;
+		}
+		dt {
+			margin-bottom: 0.5rem;
+			font-weight: bold;
+			font-size: 1.8rem;
+		}
+		dd.image {
+			margin-top: -3rem;
+			margin-bottom: -2.5rem;
+			border-radius: 8px;
+			padding-top: 1rem;
+			width: 80px;
+			height: 80px;
+			overflow: hidden;
+		}
+		dd.bio {
+			margin-bottom: 1.25rem;
+			min-height: 0.25rem;
+			line-height: 1.5;
+		}
+
+		dd.links {
+			a {
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				margin-right: 0.5rem;
+				padding: 0.5rem 0.3rem;
+				font-size: 1.5rem;
+
+				&:hover {
+					transform: translateY(-3px);
+					transition: transform 0.2s ease-in-out;
+				}
+			}
+		}
+
+		img {
+			display: block;
+			float: left;
+			margin-top: -1rem;
+			margin-right: 10px;
+			max-width: 80px;
+		}
+	}
+
+	.member-content {
+		margin-top: 3rem;
+		border-top: 1px solid var(--theme-divider, rgba(0, 0, 0, 0.1));
+		padding-top: 2rem;
+		line-height: 1.6;
+	}
+
+	/* 멤버 스토리 섹션 스타일 */
+	.member-stories {
+		margin-top: 1rem;
+		border-top: 1px solid var(--theme-divider, rgba(0, 0, 0, 0.1));
+		padding-top: 2rem;
+
+		h2 {
+			margin-bottom: 1.5rem;
+			font-size: 1.5rem;
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		li {
+			margin-bottom: 1rem;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		a {
+			display: block;
+			transition: transform 0.2s ease-in-out;
+			border-radius: 0.5rem;
+			padding: 0.5rem 0;
+			text-decoration: none;
+
+			&:hover {
+				transform: translateY(-3px);
+				.story-title {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.story-info {
+			time {
+				display: inline-block;
+				opacity: 0.8;
+				font-size: 0.9rem;
+			}
+			.story-title {
+				margin: 0 0 0.25rem 0;
+				font-size: 1.2rem;
+			}
+			.story-description {
+				margin: 0;
+				font-size: 0.95rem;
+				line-height: 1.5;
+			}
+		}
+	}
+</style>
