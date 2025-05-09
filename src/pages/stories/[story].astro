@@ -62,6 +62,7 @@ console.log(story.data.author)
         <aside class="author">
           <MemberInfo member={authorData} />
         </aside>
+        <p class="caution">☝️ 참고: 본문의 내용이 커뮤니티의 방향성과 일치하지 않을 수 있습니다.</p>
       </div>
     </section>
   </article>
@@ -86,10 +87,13 @@ console.log(story.data.author)
   }
   .author {
     float: right;
-		margin-bottom: 80px;
-		max-width: 300px;
     margin-top: 2rem;
+    margin-bottom: 80px;
+    max-width: 300px;
     color: var(--text-300);
     font-size: 0.9rem;
+  }
+  .caution {
+    clear: both;
   }
 </style>
