@@ -6,6 +6,7 @@ const storyCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    official: z.boolean(),
     slug: z.string(),
     author: z.string(),
     pubDate: z.string().or(z.date()),
