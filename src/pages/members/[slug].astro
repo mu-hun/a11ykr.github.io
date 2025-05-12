@@ -229,7 +229,7 @@ const publishedStories = memberStories.filter((story) => !story.data.draft)
 		padding-top: 2rem;
 
 		h2 {
-			margin-bottom: 1.5rem;
+			margin-bottom: 0;
 			font-size: 1.5rem;
 		}
 
@@ -260,21 +260,39 @@ const publishedStories = memberStories.filter((story) => !story.data.draft)
 				}
 			}
 		}
-
 		.story-info {
+			display: flex;
+			align-items: flex-start;
+			.story-title {
+				margin: 0 1rem;
+				padding: 0;
+				width: 50%;
+				font-size: 1rem;
+				line-height: 1.5;
+			}
 			time {
 				display: inline-block;
 				opacity: 0.8;
-				font-size: 0.9rem;
+				min-width: 120px;
+				font-size: 0.95rem;
 			}
-			.story-title {
-				margin: 0 0 0.25rem 0;
-				font-size: 1.2rem;
-			}
+
 			.story-description {
 				margin: 0;
 				font-size: 0.95rem;
 				line-height: 1.5;
+			}
+		}
+	}
+	@media screen and (max-width: 768px) {
+		.member-stories {
+			.story-info {
+				display: flex;
+				flex-direction: column;
+				.story-title {
+					margin: 0.25rem 0;
+					width: 100%;
+				}
 			}
 		}
 	}

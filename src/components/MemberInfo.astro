@@ -22,54 +22,63 @@ const { member } = Astro.props
 ---
 
 <dl class="member">
-	<dt><a href={`/members/${member.data?.userid || member.slug}`} class="member-link">{member.data.title}</a></dt>
 	{
-		member.data.img ? (
-			<dd class="image">
-				<img src={member.data.img} alt="" />
-			</dd>
+		member.data.userid === 'a11ykr' ? (
+			<dt>{member.data.title}</dt>
+			<dd class="image"><img src="/social-preview-image.png" alt="" /></dd>
+			<dd class="bio">접근성에 관한 자료, 생각을 모으는 공간입니다.</dd>
 		) : (
-			''
+			<dt>
+				<a href={`/members/${member.data?.userid || member.slug}`} class="member-link">
+					{member.data.title}
+				</a>
+			</dt>
+			<dd class="image">
+			{ member.data.img && (
+				<img src={member.data.img} alt="" />
+				)
+			}
+			</dd>
+			<dd class="bio">{member.data.description}</dd>
+			<dd>
+				{
+					member.data.homepage && (
+						<a href={member.data.homepage}>
+							<Icon name="ion:home" />
+						</a>
+					)
+				}
+				{
+					member.data.github && (
+						<a href={member.data.github}>
+							<Icon name="ion:logo-github" />
+						</a>
+					)
+				}
+				{
+					member.data.twitter && (
+						<a href={member.data.twitter}>
+							<Icon name="ion:logo-twitter" />
+						</a>
+					)
+				}
+				{
+					member.data.facebook && (
+						<a href={member.data.facebook}>
+							<Icon name="ion:logo-facebook" />
+						</a>
+					)
+				}
+				{
+					member.data.linkedin && (
+						<a href={member.data.linkedin}>
+							<Icon name="ion:logo-linkedin" />
+						</a>
+					)
+				}
+			</dd>
 		)
 	}
-	<dd class="bio">{member.data.description}</dd>
-	<dd>
-		{
-			member.data.homepage && (
-				<a href={member.data.homepage}>
-					<Icon name="ion:home" />
-				</a>
-			)
-		}
-		{
-			member.data.github && (
-				<a href={member.data.github}>
-					<Icon name="ion:logo-github" />
-				</a>
-			)
-		}
-		{
-			member.data.twitter && (
-				<a href={member.data.twitter}>
-					<Icon name="ion:logo-twitter" />
-				</a>
-			)
-		}
-		{
-			member.data.facebook && (
-				<a href={member.data.facebook}>
-					<Icon name="ion:logo-facebook" />
-				</a>
-			)
-		}
-		{
-			member.data.linkedin && (
-				<a href={member.data.linkedin}>
-					<Icon name="ion:logo-linkedin" />
-				</a>
-			)
-		}
-	</dd>
 </dl>
 <style lang="scss">
 	.member {
