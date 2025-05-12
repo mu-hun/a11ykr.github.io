@@ -7,7 +7,15 @@ import type { CollectionEntry } from 'astro:content'
 
 export const getStaticPaths = (async ({ paginate }) => {
   const stories = await getCollection('stories')
-  return paginate(stories, { pageSize: 6 })
+
+  // 최신 글이 먼저 오도록 날짜 기준 정렬
+  const sortedStories = stories.sort((a, b) => {
+    const dateA = a.data.pubDate instanceof Date ? a.data.pubDate : new Date(a.data.pubDate || 0)
+    const dateB = b.data.pubDate instanceof Date ? b.data.pubDate : new Date(b.data.pubDate || 0)
+    return dateB.getTime() - dateA.getTime()
+  })
+
+  return paginate(sortedStories, { pageSize: 6 })
 }) satisfies GetStaticPaths
 
 interface Props {
@@ -43,7 +51,7 @@ const { page } = Astro.props
           ))
         }
       </ul>
-      <div class="korean-pagination mt-12 grid place-content-center">
+      <div class="mt-12 grid place-content-center">
         <Pagination
           firstPage={page.url.prev ? '/stories' : null}
           previousPage={page.url.prev ? page.url.prev : null}
@@ -51,6 +59,26 @@ const { page } = Astro.props
           lastPage={page.url.next ? `/stories/${Math.ceil(page.total / page.size)}` : null}
           currentPage={page.currentPage}
           totalPages={Math.ceil(page.total / page.size)}
+          ariaLabel="페이지 탐색"
+          firstPageLabel="첫 페이지로 이동"
+          previousPageLabel="이전 페이지로 이동"
+          nextPageLabel="다음 페이지로 이동"
+          lastPageLabel="마지막 페이지로 이동"
+          renderProgress={({ currentPage, totalPages }) => `페이지 ${currentPage} / ${totalPages}`}
+          renderPageLabel={({ type, page }) => {
+            switch (type) {
+              case 'first':
+                return `첫 페이지로 이동 (페이지 1)`
+              case 'previous':
+                return `이전 페이지로 이동 (페이지 ${page})`
+              case 'next':
+                return `다음 페이지로 이동 (페이지 ${page})`
+              case 'last':
+                return `마지막 페이지로 이동 (페이지 ${page})`
+              default:
+                return `페이지 ${page}로 이동`
+            }
+          }}
         />
       </div>
     </div>

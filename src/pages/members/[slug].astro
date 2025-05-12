@@ -19,15 +19,27 @@ const { member } = Astro.props
 const allStories = await getCollection('stories')
 const memberStories = allStories.filter((story) => story.data.author === member.data.userid)
 
+// 기여한 글 찾기 (contributor 배열에 멤버 ID가 포함된 글)
+const contributedStories = allStories.filter(
+	(story) =>
+		story.data.contributor &&
+		story.data.contributor.includes(member.data.userid) &&
+		story.data.author !== member.data.userid, // 이미 작성한 글에 포함되지 않도록
+)
+
 // 글 날짜 기준으로 정렬 (최신 글이 먼저 오도록)
-memberStories.sort((a, b) => {
+const sortByDate = (a, b) => {
 	const dateA = a.data.pubDate instanceof Date ? a.data.pubDate : new Date(a.data.pubDate || 0)
 	const dateB = b.data.pubDate instanceof Date ? b.data.pubDate : new Date(b.data.pubDate || 0)
 	return dateB.getTime() - dateA.getTime()
-})
+}
+
+memberStories.sort(sortByDate)
+contributedStories.sort(sortByDate)
 
 // 임시 글(draft) 제외
 const publishedStories = memberStories.filter((story) => !story.data.draft)
+const publishedContributions = contributedStories.filter((story) => !story.data.draft)
 ---
 
 <DefaultLayout
@@ -36,7 +48,7 @@ const publishedStories = memberStories.filter((story) => !story.data.draft)
 	<section class="my-12">
 		<div class="container">
 			<div class="back-link">
-				<a href="/members/">← 모든 멤버 보기</a>
+				<a href="/members/">← 전체 기여자 목록</a>
 			</div>
 
 			<div class="member-detail">
@@ -103,9 +115,50 @@ const publishedStories = memberStories.filter((story) => !story.data.draft)
 				{
 					publishedStories.length > 0 && (
 						<div class="member-stories">
-							<h2>작성한 글 목록</h2>
+							<h2>작성한 글</h2>
 							<ul>
 								{publishedStories.map((story) => (
+									<li>
+										<a href={`/stories/${story.data.slug || story.slug}`}>
+											<div class="story-info">
+												{story.data.pubDate && (
+													<time
+														datetime={
+															story.data.pubDate instanceof Date
+																? story.data.pubDate.toISOString()
+																: new Date(story.data.pubDate).toISOString()
+														}>
+														{story.data.pubDate instanceof Date
+															? story.data.pubDate.toLocaleDateString('ko-KR', {
+																	year: 'numeric',
+																	month: 'long',
+																	day: 'numeric',
+																})
+															: new Date(story.data.pubDate).toLocaleDateString('ko-KR', {
+																	year: 'numeric',
+																	month: 'long',
+																	day: 'numeric',
+																})}
+													</time>
+												)}
+												<h3 class="story-title">{story.data.title}</h3>
+												{story.data.description && <p class="story-description">{story.data.description}</p>}
+											</div>
+										</a>
+									</li>
+								))}
+							</ul>
+						</div>
+					)
+				}
+
+				{/* 멤버가 기여한 스토리 목록 */}
+				{
+					publishedContributions.length > 0 && (
+						<div class="member-stories member-contributions">
+							<h2>참여 활동</h2>
+							<ul>
+								{publishedContributions.map((story) => (
 									<li>
 										<a href={`/stories/${story.data.slug || story.slug}`}>
 											<div class="story-info">
@@ -284,6 +337,12 @@ const publishedStories = memberStories.filter((story) => !story.data.draft)
 			}
 		}
 	}
+
+	/* 기여한 글 목록 스타일 - 필요하다면 다른 스타일 추가 */
+	.member-contributions {
+		margin-top: 2rem;
+	}
+
 	@media screen and (max-width: 768px) {
 		.member-stories {
 			.story-info {
