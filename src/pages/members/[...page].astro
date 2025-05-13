@@ -1,16 +1,21 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import MemberInfo from '../../components/MemberInfo.astro'
+import { Pagination } from 'accessible-astro-components'
 import { getCollection } from 'astro:content'
 import type { GetStaticPaths } from 'astro'
 
 export const getStaticPaths = (async ({ paginate }) => {
   const members = await getCollection('members')
-  return paginate(members, { pageSize: 10000 })
+  return paginate(members, { pageSize: 15 })
 }) satisfies GetStaticPaths
 
 // 모든 멤버 가져오기
 const allMembers = await getCollection('members')
+interface Props {
+  page: Page<CollectionEntry<'members'>>
+}
+const { page } = Astro.props
 // console.log('전체 멤버 수:', allMembers.length)
 ---
 
@@ -40,6 +45,36 @@ const allMembers = await getCollection('members')
           )
         }
       </ul>
+      <div class="mt-12 grid place-content-center">
+        <Pagination
+          firstPage={page.url.prev ? '/members' : null}
+          previousPage={page.url.prev ? page.url.prev : null}
+          nextPage={page.url.next ? page.url.next : null}
+          lastPage={page.url.next ? `/members/${Math.ceil(page.total / page.size)}` : null}
+          currentPage={page.currentPage}
+          totalPages={Math.ceil(page.total / page.size)}
+          ariaLabel="페이지 탐색"
+          firstPageLabel="첫 페이지로 이동"
+          previousPageLabel="이전 페이지로 이동"
+          nextPageLabel="다음 페이지로 이동"
+          lastPageLabel="마지막 페이지로 이동"
+          renderProgress={({ currentPage, totalPages }) => `페이지 ${currentPage} / ${totalPages}`}
+          renderPageLabel={({ type, page }) => {
+            switch (type) {
+              case 'first':
+                return `첫 페이지로 이동 (페이지 1)`
+              case 'previous':
+                return `이전 페이지로 이동 (페이지 ${page})`
+              case 'next':
+                return `다음 페이지로 이동 (페이지 ${page})`
+              case 'last':
+                return `마지막 페이지로 이동 (페이지 ${page})`
+              default:
+                return `페이지 ${page}로 이동`
+            }
+          }}
+        />
+      </div>
     </div>
   </section>
 </DefaultLayout>
