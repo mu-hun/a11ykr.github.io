@@ -26,7 +26,7 @@ const { member } = Astro.props
 		member.data.userid === 'a11ykr' ? (
 			<dt>{member.data.title}</dt>
 			<dd class="image"><img src="/social-preview-image.png" alt="" /></dd>
-			<dd class="bio">접근성에 관한 자료, 생각을 모으는 공간입니다.</dd>
+			<dd class="bio">접근성에 관한 생각, 자료를 모아보는 공간입니다.</dd>
 		) : (
 			<dt>
 				<a href={`/members/${member.data?.userid || member.slug}`} class="member-link">
