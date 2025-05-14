@@ -8,15 +8,15 @@ author: a11ykr
 contributor: [resistan, reyoucat, Sooamazing, mihee]
 pubDate: 2025-05-15
 draft: false
-img: https://accessibility.day/wp-content/uploads/2023/04/gaad-logo-navy.png
+img: /images/gaad-logo-navy.png
 tags: ["accessibility", "awareness", "korean"]
 ---
 
 2011년 [Joe Devon의 블로그 글](https://mysqltalk.wordpress.com/2011/11/27/challenge-accessibility-know-how-needs-to-go-mainstream-with-developers-now/)에서 논의를 시작해, 현재는 재단 활동으로 지속되고 있는 ["세계 접근성 인식 제고의 날"(<span lang="en">GAAD: Global Accessibility Awareness Day</span>)](https://accessibility.day/)이 있습니다.
 
 <figure>
-	<span class="light"><img src="https://accessibility.day/wp-content/uploads/2023/04/gaad-logo-navy.png" alt=""></span>
-	<span class="dark"><img src="https://accessibility.day/wp-content/uploads/2023/04/gaad-logo-white.png" alt=""></span>
+	<span class="light"><img src="/images/gaad-logo-navy.png" alt=""></span>
+	<span class="dark"><img src="/images/gaad-logo-white.png" alt=""></span>
 </figure>
 
 국내에서는 접근성 커뮤니티 위주로 알려지다가 시간이 지나면서 "세계 접근성 인식의 날"이라고 살짝 줄여 부르고 있습니다. 23년에 [널리에서 소개한 글](https://nuli.navercorp.com/community/article/1133193)을 비롯해, 작년에는 [삼성전자에서 기념 행사](https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EC%84%B8%EA%B3%84-%EC%A0%91%EA%B7%BC%EC%84%B1-%EC%9D%B8%EC%8B%9D%EC%9D%98-%EB%82%A0-%EB%A7%9E%EC%95%84-%EA%B8%B0%EB%85%90-%ED%8E%98%EC%8A%A4%ED%8B%B0)를 하기도 했습니다.
