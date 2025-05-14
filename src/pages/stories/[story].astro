@@ -62,10 +62,31 @@ console.log(story.data.author)
         <aside class="author">
           <MemberInfo member={authorData} />
         </aside>
-        { !story.data.official && <p class="caution">☝️ 참고: 본문의 내용이 커뮤니티의 방향성과 일치하지 않을 수 있습니다.</p>}
+        {
+          !story.data.official && (
+            <p class="caution">☝️ 참고: 본문의 내용이 커뮤니티의 방향성과 일치하지 않을 수 있습니다.</p>
+          )
+        }
       </div>
     </section>
   </article>
+  <div class="comments">
+    <script
+      src="https://giscus.app/client.js"
+      data-repo="a11ykr/a11ykr.github.io"
+      data-repo-id="R_kgDOOMKqQA"
+      data-category="General"
+      data-category-id="DIC_kwDOOMKqQM4CqH1b"
+      data-mapping="title"
+      data-strict="1"
+      data-reactions-enabled="0"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="ko"
+      crossorigin="anonymous"
+      async></script>
+  </div>
 </DefaultLayout>
 
 <style lang="scss">
@@ -95,5 +116,8 @@ console.log(story.data.author)
   }
   .caution {
     clear: both;
+  }
+  .comments {
+    margin: 2rem;
   }
 </style>
