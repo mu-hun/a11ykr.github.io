@@ -39,16 +39,27 @@ import logo from '../assets/img/a11ykr.png'
     // functions
     const setActiveMenuItem = () => {
       const mobileDesktopMenus = mainNav.querySelectorAll('nav > ul')
-      const currenPathname = window.location.pathname
+      const currentPathname = window.location.pathname
 
       mobileDesktopMenus.forEach((menu) => {
         const menuItems = [...menu.querySelectorAll('a:not([rel*="external"])')] as HTMLAnchorElement[]
 
         menuItems.forEach((menuItem) => {
-          if (currenPathname.includes(menuItem.pathname.replaceAll('/', '')) && menuItem.textContent !== 'Home') {
+          const menuPath = menuItem.pathname
+
+          if (menuItem.textContent === 'Home' && currentPathname === '/') {
             menuItem.classList.add('is-active')
             menuItem.setAttribute('aria-current', 'page')
-          } else if (menuItem.textContent === 'Home' && currenPathname === '/') {
+            return
+          }
+
+          if (
+            menuPath !== '/' && // Home이 아닌 경우만
+            (currentPathname === menuPath || // 정확히 일치하거나
+              (currentPathname.startsWith(menuPath + '/') && // 하위 경로이면서
+                !currentPathname.replace(menuPath + '/', '').includes('/')))
+          ) {
+            // 직접적인 하위 경로인 경우만
             menuItem.classList.add('is-active')
             menuItem.setAttribute('aria-current', 'page')
           }
