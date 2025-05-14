@@ -2,9 +2,9 @@
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import Hero from '../components/Hero.astro'
 import Feature from '../components/Feature.astro'
-// import Counter from '../components/Counter.astro'
-// import ContentMedia from '../components/ContentMedia.astro'
-// import { Accordion, AccordionItem } from 'accessible-astro-components'
+import Counter from '../components/Counter.astro'
+import ContentMedia from '../components/ContentMedia.astro'
+import { Accordion, AccordionItem } from 'accessible-astro-components'
 ---
 
 <DefaultLayout title="Home">
@@ -14,7 +14,7 @@ import Feature from '../components/Feature.astro'
       <h2 class="mb-16 text-6xl">구성 안내</h2>
       <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
         <Feature icon="mdi:wheelchair-accessibility" title="디지털 접근성">
-          디지털 접근성에 관한 다양한 내용을 다룹니다.
+          <a href="/stories">디지털 접근성에 관한 다양한 내용</a>을 다룹니다.
         </Feature>
         <Feature icon="mdi:book-open-page-variant" title="문서와 자료">
           <a href="/docs/">WCAG를 비롯한 W3C의 접근성 표준 및 한국 표준과 관련 문서, 참고 자료 등</a>을 제공합니다.
