@@ -38,7 +38,7 @@ tags: ["accessibility", "awareness", "korean"]
 ### 참여자들의 한마디
 * [리유](/members/reyoucat/): @> 시작은 미약하나, 나중엔 이 활동으로 모두가 편하게 사용 가능 한 웹이 되면 좋겠습니다. :)
 * [미희](/members/mihee/): 접근성을 이야기하는 것이 당연하고, 자연스럽게 되길
-* [hanna](/members/Sooamazing/)
+* [hanna](/members/Sooamazing/): 접근성 논의가 나중이 아니라 당연하게 오가는 이야기가 되길 바랍니다 🙂
 * [현진](/members/resistan/): 모두 함께 하는 세상으로.
 
 <style>
