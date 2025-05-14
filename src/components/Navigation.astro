@@ -41,25 +41,58 @@ import logo from '../assets/img/a11ykr.png'
       const mobileDesktopMenus = mainNav.querySelectorAll('nav > ul')
       const currentPathname = window.location.pathname
 
+      // 사이트맵 구조 정의 (각 메뉴 항목에 어떤 경로가 포함되는지)
+      const siteStructure = {
+        '/': ['/'], // 홈은 홈 경로만 활성화
+        '/about': ['/about', '/about/'], // about 페이지와 그 직접 하위 경로
+        '/stories': ['/stories', '/stories/'], // stories 페이지와 모든 블로그 포스트
+        // 필요시 항목 추가...
+      }
+
+      // 특별 케이스: 특정 URL 패턴에 대한 메뉴 매핑
+      const specialCases = {
+        // 'about-'로 시작하는 URL 패턴은 어떤 메뉴에도 매핑되지 않음
+        '/about-': null,
+        // 필요한 다른 특별 케이스 추가...
+      }
+
       mobileDesktopMenus.forEach((menu) => {
         const menuItems = [...menu.querySelectorAll('a:not([rel*="external"])')] as HTMLAnchorElement[]
 
+        // 모든 메뉴 항목 초기화
+        menuItems.forEach((item) => {
+          item.classList.remove('is-active')
+          item.removeAttribute('aria-current')
+        })
+
+        // 현재 경로에 맞는 메뉴 항목 찾기
         menuItems.forEach((menuItem) => {
           const menuPath = menuItem.pathname
 
-          if (menuItem.textContent === 'Home' && currentPathname === '/') {
-            menuItem.classList.add('is-active')
-            menuItem.setAttribute('aria-current', 'page')
-            return
+          // 특별 케이스 먼저 확인
+          for (const [pattern, targetMenu] of Object.entries(specialCases)) {
+            if (currentPathname.startsWith(pattern)) {
+              if (targetMenu === menuPath) {
+                menuItem.classList.add('is-active')
+                menuItem.setAttribute('aria-current', 'page')
+              }
+              return // 특별 케이스가 매칭되면 일반 로직은 건너뜀
+            }
           }
 
-          if (
-            menuPath !== '/' && // Home이 아닌 경우만
-            (currentPathname === menuPath || // 정확히 일치하거나
-              (currentPathname.startsWith(menuPath + '/') && // 하위 경로이면서
-                !currentPathname.replace(menuPath + '/', '').includes('/')))
-          ) {
-            // 직접적인 하위 경로인 경우만
+          // 사이트맵 구조에서 현재 메뉴 항목에 해당하는 패턴 가져오기
+          const patterns = siteStructure[menuPath] || []
+
+          // 현재 경로가 이 메뉴 항목의 패턴과 일치하는지 확인
+          const isMatch = patterns.some((pattern) => {
+            if (pattern.endsWith('/')) {
+              return currentPathname.startsWith(pattern)
+            } else {
+              return currentPathname === pattern
+            }
+          })
+
+          if (isMatch) {
             menuItem.classList.add('is-active')
             menuItem.setAttribute('aria-current', 'page')
           }

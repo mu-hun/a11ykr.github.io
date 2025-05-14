@@ -9,6 +9,7 @@ import { Icon } from 'astro-icon/components'
     <a href="#main-content">본문 바로가기</a>
   </div>
   <Navigation>
+    <!--하위 메뉴 수정시 Nav component의 케이스 수정 필요 -->
     <li class="menu-item">
       <a href="/about">소개</a>
     </li>
@@ -16,29 +17,15 @@ import { Icon } from 'astro-icon/components'
       <a href="/stories">이야기</a>
     </li>
     <li class="menu-item">
-      <a href="/docs" rel="external">문서</a>
+      <a href="/docs/" rel="external">문서</a>
     </li>
-    <!-- <li class="menu-item has-dropdown">
-      <button aria-haspopup="true" aria-expanded="false">접근성 점검 도구</button>
-      <ul class="dropdown-menu">
-        <li class="submenu-item">
-          <a href="/standards/">표준과 지침</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/markdown-page/">접근성 점</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/accessible-components">Accessible Components</a>
-        </li>
-      </ul>
-    </li> -->
     <li class="menu-item type-icon">
-      <a href="https://github.com/a11ykr" title="깃헙 페이지">
+      <a href="https://github.com/a11ykr" rel="external" title="깃허브">
         <Icon name="ion:logo-github" />
       </a>
     </li>
     <li class="menu-item type-icon">
-      <a href="https://discord.gg/9ZXYJWDjWR" title="디스코드 커뷰니티">
+      <a href="https://discord.gg/9ZXYJWDjWR" rel="external" title="디스코드 커뷰니티">
         <Icon name="ion:logo-discord" />
       </a>
     </li>
